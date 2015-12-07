@@ -1,7 +1,16 @@
 FROM alpine:3.2
-MAINTAINER Abiola Ibrahim <abiola89@gmail.com>
+MAINTAINER Stephen Tudor <smt@smt.io>
 
-RUN apk add --update openssh-client git tar
+RUN apk add --update \
+    openssh-client \
+    git \
+    tar \
+    python \
+    python-dev \
+    py-pip \
+    build-base \
+&& pip install pygments \
+&& rm -rf /var/cache/apk/*
 
 RUN mkdir /caddysrc \
 && curl -sL -o /caddysrc/caddy_linux_amd64.tar.gz "https://caddyserver.com/download/build?os=linux&arch=amd64&features=git%2Chugo" \
